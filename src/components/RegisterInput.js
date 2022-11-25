@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
+import { useForm } from 'react-hook-form';
 
-function LoginInput({ login }) {
+function RegisterInput({ registerSubmit }) {
   const { register, handleSubmit, formState: { errors, isDirty } } = useForm();
 
   return (
-    <Form noValidate validated={isDirty} onSubmit={handleSubmit((data) => login(data))}>
+    <Form noValidate validated={isDirty} onSubmit={handleSubmit((data) => registerSubmit(data))}>
+      <Form.Group className="mb-3" controlId="name">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter Name" required {...register('name', { required: { value: true, message: 'name wajib di isi' } })} />
+        {errors.name && (
+        <Form.Control.Feedback type="invalid">
+          {errors.name.message}
+        </Form.Control.Feedback>
+        )}
+      </Form.Group>
       <Form.Group className="mb-3" controlId="email">
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -34,13 +43,13 @@ function LoginInput({ login }) {
         </Form.Control.Feedback>
         )}
       </Form.Group>
-      <button type="submit" className="btn btn-block w-100 mt-3 btn-primary">Login</button>
+      <button type="submit" className="btn btn-block w-100 mt-3 btn-primary">Register</button>
     </Form>
   );
 }
 
-LoginInput.propTypes = {
-  login: PropTypes.func.isRequired,
+RegisterInput.propTypes = {
+  registerSubmit: PropTypes.func.isRequired,
 };
 
-export default LoginInput;
+export default RegisterInput;

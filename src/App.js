@@ -1,36 +1,67 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Navigator from './components/Navigation';
 import LoginPage from './pages/LoginPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import './styles/app.css';
+import './scss/custom.scss';
+import { asyncUnsetAuthUser } from './states/authUser/action';
+import HomePage from './pages/HomePage';
+import { asyncPreloadProcess } from './states/isPreload/action';
+import RegisterPage from './pages/RegisterPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   const {
     authUser = null,
-  } = {};
+    isPreload = false,
+  } = useSelector((states) => states);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+  }, [dispatch]);
 
   const onSignOut = () => {
-
+    dispatch(asyncUnsetAuthUser());
+    navigate('/login');
   };
+
+  if (isPreload) {
+    return null;
+  }
 
   if (authUser === null) {
     return (
-      <main>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
-      </main>
+      <>
+        <Navigator signOut={onSignOut} />
+        <main>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/threads/:id" element={<DetailPage />} />
+          </Routes>
+        </main>
+      </>
     );
   }
 
   return (
-    <div className="container">
+    <>
       <header className="App-header">
         <Navigator authUser={authUser} signOut={onSignOut} />
       </header>
-    </div>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/threads/:id" element={<DetailPage />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 

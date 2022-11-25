@@ -33,6 +33,7 @@ function asyncSetAuthUser({ email, password }) {
       dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
       alert(error.message);
+      throw error.message;
     }
   };
 }
