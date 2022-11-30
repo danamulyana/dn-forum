@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 import { FaComments } from 'react-icons/fa';
 import parser from 'html-react-parser';
 import { postedAt } from '../utils';
+import VoteComponent from './VoteComponent';
 
 function ThreadItem({
-  id, title, body, category, createdAt, totalComments, upVotesBy, downVotesBy, user,
+  id, title, body, createdAt, totalComments, upVotesBy, downVotesBy, user, like, dislike,
 }) {
   return (
     <article className="card mb-2">
@@ -30,16 +30,13 @@ function ThreadItem({
           </div>
         </Link>
         <div className="d-flex g-0 fw-semi-bold text-center py-2 fs-6 justify-content-between">
-          <div className="d-flex">
-            <button type="button" className="rounded-2 d-flex align-items-center text-muted btn">
-              <AiFillLike />
-              <span className="ms-1">{upVotesBy.length}</span>
-            </button>
-            <button type="button" className="rounded-2 d-flex align-items-center text-muted btn">
-              <AiFillDislike />
-              <span className="ms-1">{downVotesBy.length}</span>
-            </button>
-          </div>
+          <VoteComponent
+            id={id}
+            upVotesBy={upVotesBy}
+            downVotesBy={downVotesBy}
+            like={like}
+            dislike={dislike}
+          />
           <div className="d-flex align-items-center text-muted">
             <FaComments />
             <span className="ms-1">{totalComments}</span>
@@ -61,12 +58,13 @@ const threadItemShape = {
   title: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   totalComments: PropTypes.number.isRequired,
-  // likes: PropTypes.arrayOf(PropTypes.string).isRequired,
   user: PropTypes.shape(userShape).isRequired,
 };
 
 ThreadItem.propTypes = {
   ...threadItemShape,
+  like: PropTypes.func.isRequired,
+  dislike: PropTypes.func.isRequired,
 };
 
 export { threadItemShape };

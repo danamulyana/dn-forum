@@ -64,7 +64,46 @@ function asyncToggleLikeThread(threadId) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser } = getState();
-    dispatch(toggleLikeThreadActionCreator(threadId, authUser));
+    try {
+      if (authUser === null) throw new Error('Harap Login terlebih dahulu.');
+      dispatch(toggleLikeThreadActionCreator({ threadId, userId: authUser.id }));
+
+      const thread = await api.getThreadDetail(threadId);
+      const cek = thread.upVotesBy.filter((ids) => ids === authUser.id).length;
+
+      if (cek) {
+        await api.neutralVoteThread(threadId);
+      } else {
+        await api.voteThread(threadId);
+      }
+    } catch (error) {
+      alert(error.message);
+      throw error.message;
+    }
+    dispatch(hideLoading());
+  };
+}
+
+function asyncToggleUnLikeThread(threadId) {
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
+    const { authUser } = getState();
+    try {
+      if (authUser === null) throw new Error('Harap Login terlebih dahulu.');
+      dispatch(toggleUnLikeThreadActionCreator({ threadId, userId: authUser.id }));
+
+      const thread = await api.getThreadDetail(threadId);
+      const cek = thread.downVotesBy.filter((ids) => ids === authUser.id).length;
+
+      if (cek) {
+        await api.neutralVoteThread(threadId);
+      } else {
+        await api.unVoteThread(threadId);
+      }
+    } catch (error) {
+      throw error.message;
+    }
+    dispatch(hideLoading());
   };
 }
 
@@ -73,4 +112,6 @@ export {
   receiveThreadsActionCreator,
   addThreadActionCreator,
   asyncAddThread,
+  asyncToggleLikeThread,
+  asyncToggleUnLikeThread,
 };

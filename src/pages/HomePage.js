@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import ThreadList from '../components/ThreadList';
 import CategoriesList from '../components/CategoriesList';
 import { toggleCategoryActionCreator } from '../states/categories/action';
+import { asyncToggleLikeThread, asyncToggleUnLikeThread } from '../states/thread/action';
 
 function HomePage() {
   const {
     threads = [],
     users = [],
     categories = [],
-    authUser,
+    authUser = null,
   } = useSelector((states) => states);
 
   const dispatch = useDispatch();
@@ -19,6 +21,14 @@ function HomePage() {
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
+
+  const onLike = (id) => {
+    dispatch(asyncToggleLikeThread(id));
+  };
+
+  const onDisLike = (id) => {
+    dispatch(asyncToggleUnLikeThread(id));
+  };
 
   const threadsFilter = categories.selectedCategory === null ? threads.map((thread) => ({
     ...thread,
@@ -57,14 +67,19 @@ function HomePage() {
         <div className="col-12 col-md-8 my-2">
           <div className="d-flex justify-content-between mb-3">
             <h2 className="h4">All Threads</h2>
-            <button type="button" className="btn btn-primary">
-              <FiPlus />
-              {' '}
-              Add Thread
-            </button>
+            {
+              authUser !== null
+                ? (
+                  <Link to="/threads/new" className="btn btn-primary">
+                    <FiPlus />
+                    {' '}
+                    Add Thread
+                  </Link>
+                ) : null
+            }
           </div>
           <hr className="divider" />
-          <ThreadList threads={threadsFilter} />
+          <ThreadList threads={threadsFilter} like={onLike} dislike={onDisLike} />
         </div>
       </div>
     </div>

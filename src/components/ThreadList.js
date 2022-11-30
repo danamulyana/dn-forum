@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ThreadItem, { threadItemShape } from './ThreadItem';
 
-function threadList({ threads }) {
+function threadList({ threads, like, dislike }) {
   return (
     <div className="container-fluid">
       <div className="mb-3">
@@ -14,7 +14,7 @@ function threadList({ threads }) {
       </div>
       {
         threads.map((thread) => (
-          <ThreadItem key={thread.id} {...thread} />
+          <ThreadItem key={thread.id} {...thread} like={like} dislike={dislike} />
         ))
       }
     </div>
@@ -23,6 +23,8 @@ function threadList({ threads }) {
 
 threadList.propTypes = {
   threads: PropTypes.arrayOf(PropTypes.shape(threadItemShape)).isRequired,
+  like: PropTypes.func.isRequired,
+  dislike: PropTypes.func.isRequired,
 };
 
 export default threadList;

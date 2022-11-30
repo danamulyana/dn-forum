@@ -19,9 +19,6 @@ function LoginPage() {
     <section className="container">
       <div className="row justify-content-center align-items-center py-6 h-login">
         <div className="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-          {/* <Link to="/" className="d-flex justify-content-center mb-4">
-            <img className="me-2" src="/logo-dnf.png" alt="logo" height="58" />
-          </Link> */}
           <div className="card">
             <div className="card-body p-4 p-sm-5">
               <div className="row justify-content-between mb-2">

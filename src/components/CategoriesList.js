@@ -16,13 +16,13 @@ function CategoriesList({ categories, handleFilter }) {
   );
 }
 
-const categoryShape = {
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
+const categoriesShape = {
+  values: PropTypes.arrayOf(PropTypes.string),
   selectedCategory: PropTypes.string,
 };
 
 CategoriesList.propTypes = {
-  categories: PropTypes.objectOf(PropTypes.shape(categoryShape)).isRequired,
+  categories: PropTypes.shape(categoriesShape).isRequired,
   handleFilter: PropTypes.func.isRequired,
 };
 

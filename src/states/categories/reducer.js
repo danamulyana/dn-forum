@@ -1,6 +1,11 @@
 import { ActionType } from './action';
 
-function CategoriesReducer(categories = [], action = {}) {
+const INITIAL_STATE = {
+  values: [],
+  selectedCategory: null,
+};
+
+function CategoriesReducer(categories = INITIAL_STATE, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_CATEGORIES:
       return action.payload;

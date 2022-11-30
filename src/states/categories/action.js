@@ -1,5 +1,3 @@
-import api from '../../utils/api';
-
 const ActionType = {
   RECEIVE_CATEGORIES: 'RECEIVE_CATEGORIES',
   SET_CATEGORIES: 'SET_CATEGORIES',
