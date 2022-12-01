@@ -20,7 +20,7 @@ function asyncPopulateUsersAndThreads() {
       throw error.message;
     }
 
-    dispatch(hideLoading);
+    dispatch(hideLoading());
   };
 }
 

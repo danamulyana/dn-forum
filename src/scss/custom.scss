@@ -79,3 +79,47 @@ body{
 .h-login{
     min-height: calc(100vh - 76px);
 }
+
+.leaderboard{
+    &::after{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        line-height: 30px;
+        font-weight: 700;
+        box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+        color: var(--body-bg);
+    }
+}
+.row {
+    :nth-child(1) {
+        & .leaderboard::after{
+            content: "1";
+            background: #ffc500;
+        }
+        & .crown{
+            color: #ffc500;
+        }
+    }
+    :nth-child(2) {
+        & .leaderboard::after{
+            content: "2";
+            background: #d4d4d4;
+        }
+        & .crown{
+            color: #d4d4d4;
+        }
+    }
+    :nth-child(3) {
+        & .leaderboard::after{
+            content: "3";
+            background: #ab6528;
+        }
+        & .crown{
+            color: #ab6528;
+        }
+    }
+}

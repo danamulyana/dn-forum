@@ -12,6 +12,8 @@ import { asyncPreloadProcess } from './states/isPreload/action';
 import RegisterPage from './pages/RegisterPage';
 import DetailPage from './pages/DetailPage';
 import NewPage from './pages/NewPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import Loading from './components/Loading';
 
 function App() {
   const {
@@ -38,6 +40,7 @@ function App() {
   if (authUser === null) {
     return (
       <>
+        <Loading />
         <Navigator signOut={onSignOut} />
         <main>
           <Routes>
@@ -45,6 +48,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/threads/:id" element={<DetailPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
           </Routes>
         </main>
       </>
@@ -53,6 +57,7 @@ function App() {
 
   return (
     <>
+      <Loading />
       <header className="App-header">
         <Navigator authUser={authUser} signOut={onSignOut} />
       </header>
@@ -61,6 +66,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/threads/:id" element={<DetailPage />} />
           <Route path="/threads/new" element={<NewPage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
         </Routes>
       </main>
     </>
