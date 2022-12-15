@@ -10,6 +10,6 @@ describe('Login spec', () => {
   it('should display alert when username is empty', () => {
     cy.get('button').contains(/^Login$/).click();
 
-    cy.get('div.invalid-feedback').should('be.visible').contains(/^email wajib di isi$/);
+    await cy.get('div.invalid-feedback').should('be.visible').contains(/^email wajib di isi$/);
   });
 });
