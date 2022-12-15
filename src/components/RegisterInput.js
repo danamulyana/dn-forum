@@ -43,7 +43,7 @@ function RegisterInput({ registerSubmit }) {
         </Form.Control.Feedback>
         )}
       </Form.Group>
-      <button type="submit" className="btn btn-block w-100 mt-3 btn-primary">Register</button>
+      <button type="submit" className="btn btn-block w-100 mt-3 btn-primary" name="Register">Register</button>
     </Form>
   );
 }

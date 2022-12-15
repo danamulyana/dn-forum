@@ -4,7 +4,9 @@ import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 
 function LoginInput({ login }) {
-  const { register, handleSubmit, formState: { errors, isDirty } } = useForm();
+  const {
+    register, handleSubmit, watch, formState: { errors, isDirty },
+  } = useForm();
 
   return (
     <Form noValidate validated={isDirty} onSubmit={handleSubmit((data) => login(data))}>
@@ -12,7 +14,8 @@ function LoginInput({ login }) {
         <Form.Label>Email</Form.Label>
         <Form.Control
           type="email"
-          placeholder="Enter email"
+          placeholder="Email"
+          value={watch('email') || ''}
           required
           {...register('email', {
             required: { value: true, message: 'email wajib di isi' },
@@ -27,7 +30,14 @@ function LoginInput({ login }) {
       </Form.Group>
       <Form.Group className="mb-3" controlId="password">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="******" minLength="6" required {...register('password', { minLength: { value: 6, message: 'password harus lebih dari 6 huruf' }, required: { value: true, message: 'password wajib di isi' } })} />
+        <Form.Control
+          type="password"
+          placeholder="Password"
+          minLength="6"
+          value={watch('password') || ''}
+          required
+          {...register('password', { minLength: { value: 6, message: 'password harus lebih dari 6 huruf' }, required: { value: true, message: 'password wajib di isi' } })}
+        />
         {errors.password && (
         <Form.Control.Feedback type="invalid">
           {errors.password.message}
