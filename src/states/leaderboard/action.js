@@ -30,7 +30,7 @@ function asyncReceiveLeaderboard() {
       const leaderboard = await api.leaderboard();
       dispatch(receiveLeaderboardActionCreator(leaderboard));
     } catch (error) {
-      throw error.message;
+      alert(error.message);
     }
     dispatch(hideLoading());
   };
