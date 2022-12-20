@@ -1,3 +1,15 @@
+/**
+ * skenario testing
+ *
+ * - threadReducers function
+ *    - should return the initial state when given by unknown action
+ *    - should return thread when given by RECEIVE_THREADS action
+ *    - should return thread with the new thread when given by ADD_THREAD action
+ *    - should return thread with the toggled like thread when given by TOGGLE_LIKE_THREAD action
+ *    - should return thread with the toggled unlike thread when given by TOGGLE_UNLIKE_THREAD
+ * action
+ *
+ */
 import threadReducer from './reducer';
 
 describe('threadReducers function', () => {
@@ -47,7 +59,7 @@ describe('threadReducers function', () => {
     expect(nextState).toEqual(action.payload.threads);
   });
 
-  it('should return the thead with the new thread when given by ADD_THREAD action', () => {
+  it('should return thread with the new thread when given by ADD_THREAD action', () => {
     const initialState = [
       {
         id: 'thread-1',
@@ -84,7 +96,7 @@ describe('threadReducers function', () => {
     expect(nextState).toEqual([action.payload.thread, ...initialState]);
   });
 
-  it('should return the thread with the toggled like thread when given by TOGGLE_LIKE_THREAD action', () => {
+  it('should return thread with the toggled like thread when given by TOGGLE_LIKE_THREAD action', () => {
     const initialState = [
       {
         id: 'thread-1',
@@ -121,7 +133,7 @@ describe('threadReducers function', () => {
     expect(nextState2).toEqual(initialState);
   });
 
-  it('should return the thread with the toggled unlike thread when given by TOGGLE_UNLIKE_THREAD action', () => {
+  it('should return thread with the toggled unlike thread when given by TOGGLE_UNLIKE_THREAD action', () => {
     const initialState = [
       {
         id: 'thread-1',

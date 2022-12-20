@@ -1,5 +1,15 @@
 import leaderboadReducer from './reducer';
 
+/**
+ * skenario testing
+ *
+ * - leaderboardReducer function
+ *    - should return the initial state when given by unknown action
+ *    - should return thread when given by RECEIVE_LEADERBOARD action
+ *    - should return thread when given by CLEAR_LEADERBOARD action
+ *
+ */
+
 describe('leaderboardReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = [];

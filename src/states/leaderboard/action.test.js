@@ -1,3 +1,12 @@
+/**
+ * skenario testing
+ *
+ * - asyncReceiveLeaderboard thunk
+ *    -should dispatch action correctly when data fetching success
+ *    -should dispatch action and call alert correctly when data fetching failed
+ *
+ */
+
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { asyncReceiveLeaderboard, clearLeaderboardActionCreator, receiveLeaderboardActionCreator } from './action';
 import api from '../../utils/api';
