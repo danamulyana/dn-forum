@@ -1,3 +1,22 @@
+/**
+ * skenario testing
+ *
+ * - threadDetailReducer function
+ *    - should return the initial state when given by unknown action
+ *    - should return threadDetail when given by RECEIVE_THREAD_DETAIL action
+ *    - should return null when given by CLEAR_THREAD_DETAIL action
+ *    - should return threadDetail with the toggled like threadDetail when given
+ * by TOGGLE_LIKE_THREAD action
+ *    - should return threadDetail with the toggled unlike threadDetail when given
+ * by TOGGLE_UNLIKE_THREAD action
+ *    - should return threadDetail with the toggled like commentThreadDetail when given
+ * by TOGGLE_LIKE_THREAD_DETAIL_COMMENT action
+ *    - should return threadDetail with the toggled like commentThreadDetail when given
+ * by TOGGLE_UNLIKE_THREAD_DETAIL_COMMENT action
+ *    -should return threadDetail with the add Comment when gicen by
+ * ADD_COMMENT_THREAD_DETAIL action
+ *
+ */
 import threadDetailReducer from './reducer';
 
 describe('threadDetailReducer function', () => {
@@ -62,7 +81,7 @@ describe('threadDetailReducer function', () => {
     expect(nextState).toBeNull();
   });
 
-  it('should return the threadDetail with the toggled like threadDetail when given by TOGGLE_LIKE_THREAD action', () => {
+  it('should return threadDetail with the toggled like threadDetail when given by TOGGLE_LIKE_THREAD action', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Halo! Selamat datang dan silakan perkenalkan diri kamu!',
@@ -101,7 +120,7 @@ describe('threadDetailReducer function', () => {
     expect(nextState2).toEqual(initialState);
   });
 
-  it('should return the threadDetail with the toggled unlike threadDetail when given by TOGGLE_UNLIKE_THREAD action', () => {
+  it('should return threadDetail with the toggled unlike threadDetail when given by TOGGLE_UNLIKE_THREAD action', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Halo! Selamat datang dan silakan perkenalkan diri kamu!',
@@ -140,7 +159,7 @@ describe('threadDetailReducer function', () => {
     expect(nextState2).toEqual(initialState);
   });
 
-  it('should return the threadDetail with the toggled like commentThreadDetail when given by TOGGLE_LIKE_THREAD_DETAIL_COMMENT action', () => {
+  it('should return threadDetail with the toggled like commentThreadDetail when given by TOGGLE_LIKE_THREAD_DETAIL_COMMENT action', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Halo! Selamat datang dan silakan perkenalkan diri kamu!',
@@ -197,7 +216,7 @@ describe('threadDetailReducer function', () => {
     expect(nextState2).toEqual(initialState);
   });
 
-  it('should return the threadDetail with the toggled like commentThreadDetail when given by TOGGLE_UNLIKE_THREAD_DETAIL_COMMENT action', () => {
+  it('should return threadDetail with the toggled like commentThreadDetail when given by TOGGLE_UNLIKE_THREAD_DETAIL_COMMENT action', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Halo! Selamat datang dan silakan perkenalkan diri kamu!',
@@ -254,7 +273,7 @@ describe('threadDetailReducer function', () => {
     expect(nextState2).toEqual(initialState);
   });
 
-  it('should return the threadDetail with the add Comment when gicen by ADD_COMMENT_THREAD_DETAIL action', () => {
+  it('should return threadDetail with the add Comment when gicen by ADD_COMMENT_THREAD_DETAIL action', () => {
     const initialState = {
       id: 'thread-1',
       title: 'Halo! Selamat datang dan silakan perkenalkan diri kamu!',

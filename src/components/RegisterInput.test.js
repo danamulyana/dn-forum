@@ -1,3 +1,13 @@
+/**
+ * skenario testing
+ *
+ * - RegisterInput component
+ *    - should handle Name typing correctly
+ *    - should handle email typing correctly
+ *    - should handle password typing correctly
+ *    - should call register function when register button is clicked
+ *
+ */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event/';
